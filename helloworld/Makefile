@@ -1,8 +1,12 @@
 build:
-	rustc helloworld.rs
+	cargo build
 
 run:
-	./helloworld
+	cargo run
 
 clean:
-	rm helloworld
+	rm -rf target
+	rm Cargo.lock
+
+create:
+	cargo new hello_world --bin
