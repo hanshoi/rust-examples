@@ -11,8 +11,6 @@ fn fizzbuzz() {
 }
 
 fn main() {
-    println!("Hello, world!");
-
     for i in 0 .. 100 {
         let fb = (i%3 == 0, i%5 == 0);
         match fb {
