@@ -1,5 +1,7 @@
 use std::fmt;
 
+use utils::Input;
+
 
 #[derive(Copy, Clone)]
 pub struct Row {
@@ -28,15 +30,21 @@ impl fmt::Display for Board {
             write!(f, "{} {}\n", index + 1, row)?;
         }
         write!(f, "---------------\n")
-    }
+    } 
 }
 
 
-pub fn create_board() -> Board {
-    // fill up board
-    Board{
-        rows: [Row{
-            row: [' '; 3]
-        }; 3]
+impl Board {
+    pub fn create() -> Board {
+        // fill up board
+        Board{
+            rows: [Row{
+                row: [' '; 3]
+            }; 3]
+        }
+    }
+
+    pub fn add_tic(&mut self, input: Input, mark: char) {
+        self.rows[input.row].row[input.column] = mark;
     }
 }
