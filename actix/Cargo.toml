@@ -1,0 +1,8 @@
+[package]
+name = "actix"
+version = "0.1.0"
+authors = ["Antti Ruotsalainen <antti.ruotsalainen@vuoma.fi>"]
+edition = "2018"
+
+[dependencies]
+actix-web = "0.7"
