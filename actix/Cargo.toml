@@ -5,4 +5,4 @@ authors = ["Antti Ruotsalainen <antti.ruotsalainen@vuoma.fi>"]
 edition = "2018"
 
 [dependencies]
-actix-web = "0.7"
+actix-web = "1.0"
