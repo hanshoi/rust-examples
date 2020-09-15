@@ -2,6 +2,7 @@
 name = "cd_project"
 version = "0.1.0"
 authors = ["Antti Ruotsalainen <antti.ruotsalainen@vuoma.fi>"]
+describe = "Find closest git dir be reverse traversing folders."
 
 [dependencies]
 dirs = "3.0.1"
