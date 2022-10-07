@@ -24,17 +24,20 @@ pub fn get_history() -> History {
     }
 }
 
+pub fn get_last_command() -> String {
+    get_history()
+        .into_iter()
+        .filter(|x| !x.is_empty())
+        .last()
+        .unwrap()
+}
 
 fn get_bash_history() -> History {
-    History::from_bytes(
-        io::read_as_bytes(".bash_history").unwrap(),
-    )
+    History::from_bytes(io::read_as_bytes(".bash_history").unwrap())
 }
 
 fn get_zsh_history() -> History {
-    zsh::process_history(
-        io::read_as_bytes(".zsh_history").unwrap(),
-    )
+    zsh::process_history(io::read_as_bytes(".zsh_history").unwrap())
 }
 
 #[derive(Clone, Copy)]
