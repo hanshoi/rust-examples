@@ -1,4 +1,5 @@
 use clap::Parser;
+use std::process::Command;
 
 mod history;
 mod io;
@@ -18,5 +19,11 @@ fn main() {
         }
     }
     let last_command = history::get_last_command();
-    println!("{last_command}")
+    println!("{last_command}");
+    let command: Vec<&str> = last_command.split(' ').collect();
+
+    Command::new(command[0])
+        .args(&command[1..])
+        .status()
+        .expect("process failed to execute");
 }
