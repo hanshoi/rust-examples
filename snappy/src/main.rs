@@ -4,21 +4,22 @@ use std::process::Command;
 mod history;
 mod io;
 
-#[derive(Parser, Debug)]
+#[derive(Parser)]
 #[command(author, version, about, long_about = None)]
-struct Args {
-    #[arg(short, long, default_value_t = false)]
-    show_history: bool,
+#[command(propagate_version = true)]
+struct Cli {
+    #[arg(short, long)]
+    save: Option<String>,
 }
 
 fn main() {
-    let args = Args::parse();
-    if args.show_history {
-        for line in history::get_history() {
-            println!("{line}");
-        }
+    let cli = Cli::parse();
+    match cli.save {
+        None => {}
+        Some(_) => {}
     }
     let last_command = history::get_last_command();
+
     println!("{last_command}");
     let command: Vec<&str> = last_command.split(' ').collect();
 
