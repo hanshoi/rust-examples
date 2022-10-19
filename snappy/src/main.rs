@@ -4,7 +4,7 @@ use std::process::Command;
 mod history;
 mod io;
 
-static SNAPPY_FILE: &str = "snaps";
+static SNAPPY_FILE: &str = ".snappy";
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]

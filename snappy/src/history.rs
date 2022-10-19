@@ -27,7 +27,7 @@ pub fn get_history() -> History {
 pub fn get_last_command() -> String {
     get_history()
         .into_iter()
-        .filter(|x| !x.is_empty())
+        .filter(|x| !x.is_empty() && !x.starts_with("snappy"))
         .last()
         .unwrap()
 }
