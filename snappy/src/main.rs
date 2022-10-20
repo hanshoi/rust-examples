@@ -17,12 +17,12 @@ struct Cli {
 fn main() {
     let cli = Cli::parse();
     if cli.save {
-        println!("Save!");
         let last_command = history::get_last_command();
-        println!("{last_command}");
-        io::write_current_dir(SNAPPY_FILE, last_command.as_bytes()).unwrap();
+        println!("Saved: {last_command}");
+        io::write(io::in_current_dir(SNAPPY_FILE), last_command.as_bytes()).unwrap();
     } else {
-        let last_command = String::from_utf8(io::read_current_dir(SNAPPY_FILE).unwrap()).unwrap();
+        let last_command =
+            String::from_utf8(io::read(io::in_current_dir(SNAPPY_FILE)).unwrap()).unwrap();
 
         let command: Vec<&str> = last_command.split(' ').collect();
 

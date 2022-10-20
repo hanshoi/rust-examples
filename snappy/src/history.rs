@@ -33,11 +33,11 @@ pub fn get_last_command() -> String {
 }
 
 fn get_bash_history() -> History {
-    History::from_bytes(io::read_home_dir(".bash_history").unwrap())
+    History::from_bytes(io::read(io::in_home_dir(".bash_history")).unwrap())
 }
 
 fn get_zsh_history() -> History {
-    zsh::process_history(io::read_home_dir(".zsh_history").unwrap())
+    zsh::process_history(io::read(io::in_home_dir(".zsh_history")).unwrap())
 }
 
 #[derive(Clone, Copy)]
