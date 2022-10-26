@@ -1,5 +1,6 @@
 use clap::Parser;
-use std::process::Command;
+use run_script::ScriptOptions;
+use run_script::types::IoOptions;
 
 mod file;
 mod history;
@@ -48,10 +49,14 @@ fn main() {
 }
 
 fn execute(command: String) {
-    let command_list: Vec<&str> = command.split(' ').collect();
-
-    Command::new(command_list[0])
-        .args(&command_list[1..])
-        .status()
-        .expect("process failed to execute");
+    let mut options = ScriptOptions::new();
+    options.output_redirection = IoOptions::Inherit;
+    let (code, output, error) = run_script::run_script!(
+        format!(r#"
+         {command}
+         exit 0
+         "#),
+        &options
+    )
+    .unwrap();
 }
